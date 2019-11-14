@@ -82,7 +82,7 @@ class PluginGenericobjectType extends CommonDBTM {
                 "WHERE `itemtype`='$itemtype'";
       $result = $DB->query($query);
       if ($DB->numrows($result) > 0) {
-         $this->fields = $DB->fetch_array($result);
+         $this->fields = $DB->fetchArray($result);
       } else {
          $this->getEmpty();
       }
