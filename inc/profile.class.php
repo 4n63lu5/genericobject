@@ -76,7 +76,7 @@ class PluginGenericobjectProfile extends Profile {
       echo "</strong></th></tr>";
 
       echo "<tr><td class='genericobject_type_profiles'>";
-      foreach (getAllDatasFromTable(getTableForItemtype("Profile")) as $profile) {
+      foreach (getAllDataFromTable(getTableForItemtype("Profile")) as $profile) {
          $prof = new Profile();
          $prof->getFromDB($profile['id']);
          $rights = [
@@ -178,7 +178,7 @@ class PluginGenericobjectProfile extends Profile {
    function getProfilesFromDB($id, $config = true) {
       global $DB;
       $prof_datas =  [];
-      foreach (getAllDatasFromTable(getTableForItemType(__CLASS__),
+      foreach (getAllDataFromTable(getTableForItemType(__CLASS__),
                                     ['profiles_id' => $id]) as $prof) {
          if ($prof['right'] != "" || $config) {
             $prof_datas[$prof['itemtype']]                = $prof['right'];
@@ -267,7 +267,7 @@ class PluginGenericobjectProfile extends Profile {
     */
    public static function createAccess($profiles_id, $itemtype, $first = false) {
 
-      $rights             = getAllDatasFromTable('glpi_profiles');
+      $rights             = getAllDataFromTable('glpi_profiles');
       $profile_right      = new ProfileRight();
       $itemtype_rightname = self::getProfileNameForItemtype($itemtype);
 
@@ -377,7 +377,7 @@ class PluginGenericobjectProfile extends Profile {
 
       //Update needed
       if ($DB->tableExists('glpi_plugin_genericobject_profiles')) {
-         foreach (getAllDatasFromTable('glpi_plugin_genericobject_profiles') as $right) {
+         foreach (getAllDataFromTable('glpi_plugin_genericobject_profiles') as $right) {
             if (preg_match("/PluginGenericobject(.*)/", $right['itemtype'], $results)) {
                $newrightname = 'plugin_genericobject_'.strtolower($results[1]).'s';
                if (!countElementsInTable('glpi_profilerights',
