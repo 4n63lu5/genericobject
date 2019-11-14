@@ -1267,7 +1267,7 @@ class PluginGenericobjectType extends CommonDBTM {
                                                'overwrite_locales'      => $overwrite_locales ]);
       }
 
-      foreach ($DB->list_fields($table) as $field => $options) {
+      foreach ($DB->listFields($table) as $field => $options) {
          if (preg_match("/s_id$/", $field)) {
             $dropdowntable = getTableNameForForeignKeyField($field);
             $dropdownclass = getItemTypeForTable($dropdowntable);
@@ -1303,7 +1303,7 @@ class PluginGenericobjectType extends CommonDBTM {
 
       ]);
       //Delete files related to dropdowns
-      foreach ($DB->list_fields($table) as $field => $options) {
+      foreach ($DB->listFields($table) as $field => $options) {
          if (preg_match("/plugin_genericobject_(.*)_id/", $field, $results)) {
             $table = getTableNameForForeignKeyField($field);
 
