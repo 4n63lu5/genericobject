@@ -102,9 +102,12 @@ class PluginGenericobjectType extends CommonDBTM {
             case __CLASS__ :
                // Number of fields in database
                $itemtype = $item->fields['itemtype'];
-               $obj = new $itemtype();
-               $obj->getEmpty();
-               $nb_fields = count($obj->fields);
+               $nb_fields = 0;
+               if (class_exists($itemtype)) {
+                  $obj = new $itemtype();
+                  $obj->getEmpty();
+                  $nb_fields = count($obj->fields);
+               }
 
                $tabs =  [
                   1  => __("Main"),

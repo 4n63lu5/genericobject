@@ -292,12 +292,17 @@ class PluginGenericobjectProfile extends Profile {
    public static function getTypesRights() {
       $rights = [];
 
-      include_once(GLPI_ROOT."/plugins/genericobject/inc/type.class.php");
+      include_once(GENERICOBJECT_DIR."/inc/type.class.php");
 
       $types = PluginGenericobjectType::getTypes(true);
       if (count( $types) > 0) {
          foreach ($types as $_ => $type) {
             $itemtype   = $type['itemtype'];
+
+            if (!class_exists($itemtype)) {
+               continue;
+            }
+
             $field      = self::getProfileNameForItemtype($itemtype);
             $objecttype = new PluginGenericobjectType($itemtype);
             $rights[]   = [
