@@ -2113,4 +2113,9 @@ class PluginGenericobjectType extends CommonDBTM {
       $query = "DROP TABLE IF EXISTS `glpi_plugin_genericobject_types`";
       $DB->query($query) or die($DB->error());
    }
+
+
+   static function getIcon() {
+      return "fas fa-car";
+   }
 }
